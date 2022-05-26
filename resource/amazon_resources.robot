@@ -4,9 +4,11 @@ Library    SeleniumLibrary
 
 *** Variables ***
 ${URL}                       http://amazon.com.br
+${SEARCHBOX_ID}              id:twotabsearchtextbox
 ${MENU_ELETRONICOS}          //a[@data-csa-c-content-id='nav_cs_electronics']''
 ${HEADER_ELETRONICOS}        xpath://h1[contains(.,'Eletrônicos e Tecnologia')]
 ${CATEGORIA_COMPUTADORES}    xpath://span[@dir='auto'][contains(.,'Computadores e Informática')]
+${TEXTO_HEADER_ELETRONICOS}  Eletrônicos e Tecnologia
 
 *** Keywords ***
 abrir o navegador
@@ -25,7 +27,7 @@ entrar no menu "Eletrônicos"
     Click Element    locator=${MENU_ELETRONICOS}
 
 verificar se aparece a frase "Eletrônicos e Tecnologia"
-    Wait Until Page Contains         Eletrônicos e Tecnologia
+    Wait Until Page Contains         ${TEXTO_HEADER_ELETRONICOS}
     Element Should Be Visible        ${HEADER_ELETRONICOS}
 
 verificar se o titulo da pagina é ${TituloDaPagina}
@@ -35,4 +37,4 @@ verificar se aparece a categoria "Computadores e Informática"
     Element Should Be Visible    ${CATEGORIA_COMPUTADORES}
 
 digitar no campo de pesquisa ${PRODUTO} 
-    Input Text    locator=id:twotabsearchtextbox    text=${PRODUTO}
+    Input Text    locator=${SEARCHBOX_ID}   text=${PRODUTO}
