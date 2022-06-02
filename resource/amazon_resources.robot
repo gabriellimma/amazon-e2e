@@ -41,7 +41,7 @@ verificar se aparece a categoria "${CATEGORIA}"
     Element Should Be Visible        locator=xpath://a[@aria-label='${CATEGORIA}']
 
 digitar no campo de pesquisa "${PRODUTO}"
-    Input Text    locator=${SEARCHBOX_ID}   text=${PRODUTO}
+    Input Text                       locator=${SEARCHBOX_ID}   text=${PRODUTO}
 
 clicar no botao pesquisa
     Wait Until Element Is Visible    locator=${BTN_PESQUISA}
@@ -84,21 +84,27 @@ Entao o titulo da pagina deve ser "${TituloDaPagina}"
     verificar se o titulo da pagina é "${TituloDaPagina}"
     Title Should Be    ${TituloDaPagina}
 E a categoria "${CATEGORIA}" deve ser exibida na página
-    verificar se aparece a categoria "${CATEGORIA}"
+    verificar se aparece a categoria "${CATEGORIA}" 
+
+Então o título da página deve ser "${TituloDaPagina}"
+    verificar se o titulo da pagina é "${TituloDaPagina}"
 
 Quando pesquisar pelo produto "${PRODUTO}"
     digitar no campo de pesquisa "${PRODUTO}"
     clicar no botao "pesquisa"
-
-Então o título da página deve ser "${TituloDaPagina}"
-    verificar se o titulo da pagina é "${TituloDaPagina}"
 E um produto da linha "${PRODUTO_PESQUISADO}" deve ser exibido na página
     verificar se o resultado da pesquisa esta listando o produto "${PRODUTO_PESQUISADO}"
 
 E adiciono o produto "${PRODUTO}" no carrinho
+    Quando pesquisar pelo produto "${PRODUTO}"
     adicionar o produto "${PRODUTO}" ao carrinho
 
 Então verifico se o produto "${PRODUTO}" foi adicionado com sucesso
     verificar se o produto "${PRODUTO}" foi adicionado ao carrinho
 
-    
+Quando Remover o produto "${PRODUTO}" do carrinho
+    acessar o menu carrinho
+    remover o produto "${PRODUTO}" do carrinho
+
+Entao o carrinho deve ficar vazio
+    verificar se o carrinho de compras esta vazio
