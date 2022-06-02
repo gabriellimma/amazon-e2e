@@ -38,7 +38,7 @@ verificar se o titulo da pagina é "${TituloDaPagina}"
     Title Should Be    ${TituloDaPagina}
 
 verificar se aparece a categoria "${CATEGORIA}"
-    Element Should Be Visible    //a[@aria-label='${CATEGORIA}']
+    Element Should Be Visible        locator=xpath://a[@aria-label='${CATEGORIA}']
 
 digitar no campo de pesquisa "${PRODUTO}"
     Input Text    locator=${SEARCHBOX_ID}   text=${PRODUTO}
